@@ -1,33 +1,4 @@
-// import {BrowserRouter,Routes,Route} from "react-router-dom"
-// import Navbar from "./component/Navbar"
-// import Footer from "./component/Footer"
-// import Home from "./pages/Home"
-// import Shop from "./pages/Shop"
-// import Cart from "./pages/Cart"
-// import Admin from "./component/Admnin/Admin"
-// import AdminLogin from "./component/Admnin/AdminLogin"
 
-
-
-// function App() {
-
-
-//   return (
-//     <BrowserRouter>
-//     <Navbar />
-//     <Routes>
-//     <Route path="/" element={<Admin />}></Route>
-//     <Route path="/AdminLogin" element={<AdminLogin />}></Route>
-//       <Route path="/Home" element={<Home />}></Route>
-//       <Route path="/shop" element={<Shop />}></Route>
-//       <Route path="/cart" element={<Cart />}></Route>
-//     </Routes>
-//     <Footer />
-//     </BrowserRouter>
-//   )
-// }
-
-// export default App
 
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ToastContainer } from 'react-toastify';
@@ -38,7 +9,6 @@ import Home from "./pages/Home";
 import Shop from "./pages/Shop";
 import Cart from "./pages/Cart";
 import Admin from "./component/Admnin/Admin";
-import AdminLogin from "./component/Admnin/AdminLogin";
 import ItemEdit from "./component/Admnin/ItemEdit";
 import Login from "./component/Admnin/Login";
 import RestaurantDetail from "../src/Restaurants/RestaurantDetail "
@@ -50,11 +20,11 @@ import RestaurantList from "./Restaurants/RestaurantList";
 import AllRestaurants from "./Restaurants/AllRestaurent";
 
 function App() {
-  // Custom component to manage conditional rendering of Navbar and Footer
+
   const Layout = ({ children }) => {
     const location = useLocation();
 
-    // Define routes where Navbar and Footer should not appear
+    
     const hideNavbarFooterRoutes = [
       "/AllRestaurants",
       "/RestaurantDetail",
@@ -62,7 +32,6 @@ function App() {
       "/product",
       "/AdminDashboard",
       "/Admin",
-      "/AdminLogin",
       "/ItemEdit",
       "/"
     ];
@@ -85,7 +54,6 @@ function App() {
           <Route path="/RestaurantDetail" element={<RestaurantDetail />} /> 
           <Route path="/RestaurantList" element={<RestaurantList />} />
           <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/AdminLogin" element={<AdminLogin />} />
           <Route path="/" element={<Login />} />
           <Route path="/Home" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
@@ -98,7 +66,6 @@ function App() {
           <Route path="/AllRestaurants" element={<AllRestaurants />} />
         </Routes>
       </Layout>
-      {/* Add ToastContainer at the root level */}
       <ToastContainer />
     </BrowserRouter>
   );

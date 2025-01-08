@@ -11,12 +11,12 @@ const Login = () => {
 
   const [errors, setErrors] = useState({});
   const [apiError, setApiError] = useState("");
-  const [loginType, setLoginType] = useState("user"); // Default to user login
+  const [loginType, setLoginType] = useState("user"); 
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    // Determine login type from the route
+ 
     const path = location.pathname;
     if (path.includes("/admin")) {
       setLoginType("admin");
@@ -32,7 +32,7 @@ const Login = () => {
       [name]: value,
     }));
 
-    // Clear the error for the field being modified
+   
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: "",
@@ -42,14 +42,14 @@ const Login = () => {
   const validate = () => {
     const newErrors = {};
 
-    // Email validation
+ 
     if (!formData.email.trim()) {
       newErrors.email = "Email is required.";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = "Enter a valid email address.";
     }
 
-    // Password validation
+    
     if (!formData.password.trim()) {
       newErrors.password = "Password is required.";
     } else if (formData.password.length < 6) {
@@ -64,7 +64,7 @@ const Login = () => {
     e.preventDefault();
     if (validate()) {
       try {
-        // Choose the correct endpoint based on loginType
+     
         const apiEndpoint =
           loginType === "admin"
             ? "http://localhost:5000/api/v1/admin/login"
@@ -75,7 +75,7 @@ const Login = () => {
         if (response.data.token) {
           localStorage.setItem("authToken", response.data.token);
 
-          // Navigate to respective dashboard
+          
           navigate(loginType === "admin" ? "/AdminDashboard" : "/home");
         } else {
           setApiError(response.data.error || "Login failed. Please try again.");
